@@ -1,3 +1,27 @@
 task_homepage:
     path:     /
     defaults: { _controller: TaskBundle:Default:index }
+    
+add_task:
+    path:     /add-task
+    defaults: { _controller: TaskBundle:Default:showAddForm }
+    methods: [GET]
+    
+add_task_post:
+    path:     /add-task
+    defaults: { _controller: TaskBundle:Default:add }
+    methods: [POST]
+    
+edit_task:
+    path:     /edit-task/{id}
+    defaults: { _controller: TaskBundle:Default:showEditForm }
+    methods: [GET]
+    
+edit_task_post:
+    path:     /edit-task/{id}
+    defaults: { _controller: TaskBundle:Default:edit }
+    methods: [POST]
+    
+delete_task:
+    path:     /delete-task/{id}
+    defaults: { _controller: TaskBundle:Default:delete }

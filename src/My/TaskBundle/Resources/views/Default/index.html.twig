@@ -1,1 +1,47 @@
-Hello World!
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h2>Task Manager</h2>   
+        <form action="{{ url('add_task') }}" method="GET">
+            <input type="submit" class="btn btn-primary" value="Add Task">
+        </form>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{task.id}}</td>
+                        <td>{{task.name}}</td>
+                        <td>{{task.description}}</td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-sm" onclick="location.href = '{{ url('edit_task', {id: task.id}) }}'">
+                                <span class="glyphicon glyphicon-pencil"></span> 
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm" onclick="location.href = '{{ url('delete_task', {id: task.id}) }}'">
+                                <span class="glyphicon glyphicon-trash"></span> 
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br/>
+    <footer>
+        <div class="container">
+            Contacto: {{ contact_email }}
+        </div>
+    </footer>
+
+{% endblock %}
+

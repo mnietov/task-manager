@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h2>Add Task</h2>   
+        <form action="{{ url('add_task_post') }}" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" name="name">
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <input type="text" class="form-control" name="description">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Add">
+        </form>
+    </div>
+    
+    <br/>
+    <footer>
+        <div class="container">
+            Contacto: {{ contact_email }}
+        </div>
+    </footer>
+
+{% endblock %}
+

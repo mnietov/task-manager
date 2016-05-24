@@ -8,6 +8,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    contact_email: mnieto@tresipunt.com
 
 framework:
     #esi:             ~
@@ -37,6 +38,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+            contact_email:    "%contact_email%"
 
 # Doctrine Configuration
 doctrine:

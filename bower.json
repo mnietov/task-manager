@@ -1,0 +1,17 @@
+{
+  "name": "task-manager",
+  "homepage": "https://github.com/mnietov/task-manager",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
