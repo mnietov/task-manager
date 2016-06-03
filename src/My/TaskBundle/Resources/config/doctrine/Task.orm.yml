@@ -15,4 +15,6 @@ My\TaskBundle\Entity\Task:
         description:
             type: string
             length: 255
+        createdAt:
+            type: datetime
     lifecycleCallbacks: {  }

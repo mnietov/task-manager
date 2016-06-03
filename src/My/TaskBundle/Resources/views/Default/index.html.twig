@@ -13,6 +13,7 @@
                     <th>#</th>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Created At</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -22,6 +23,7 @@
                         <td>{{task.id}}</td>
                         <td>{{task.name}}</td>
                         <td>{{task.description}}</td>
+                        <td>{{task.createdAt|date('d/m/Y')}}</td>
                         <td>
                             <button type="button" class="btn btn-default btn-sm" onclick="location.href = '{{ url('edit_task', {id: task.id}) }}'">
                                 <span class="glyphicon glyphicon-pencil"></span> 
@@ -34,6 +36,13 @@
                 {% endfor %}
             </tbody>
         </table>
+            
+        <h2>Last 3 Tasks Added</h2>  
+            <ol>
+            {% for task in lasttasks %}
+                <li>{{task.name}}</li>
+            {% endfor %}
+            </ol>
     </div>
 
     <br/>

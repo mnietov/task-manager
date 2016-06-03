@@ -5,8 +5,6 @@ namespace My\TaskBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use My\TaskBundle\Entity\Task;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use My\TaskBundle\Form\Type\TaskType;
 
 class DefaultController extends Controller
@@ -16,7 +14,11 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()->getRepository('TaskBundle:Task');
         $tasks = $repository->findAll();
         
-        return $this->render('TaskBundle:Default:index.html.twig', array('tasks' => $tasks));
+        return $this->render('TaskBundle:Default:index.html.twig', array('tasks' => $tasks, 'lasttasks' => $this->getLastTasks()));
+    } 
+    
+    private function getLastTasks(){
+        return $this->get('my_tasks.last_tasks')->getLastTasks();
     }
     
     public function createAction(Request $request){

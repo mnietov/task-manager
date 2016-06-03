@@ -22,15 +22,7 @@ class Task
      */
     private $description;
     
-    /**
-     * @var \DateTime
-     */
-    private $createdAt;
     
-    public function __construct(){
-        $this->createdAt = new \DateTime();
-    }
-        
     /**
      * Get id
      *
@@ -89,27 +81,5 @@ class Task
         return $this->description;
     }
 
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Task
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
 }
+
