@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use My\TaskBundle\Entity\Task;
 use My\TaskBundle\Form\Type\TaskType;
+use My\TaskBundle\Event\TaskEvent;
 
 class DefaultController extends Controller
 {
@@ -31,6 +32,9 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($task);
             $em->flush();
+            $event = new TaskEvent($task); 
+            $dispatcher = $this->get('event_dispatcher'); 
+            $dispatcher->dispatch('task.create', $event);
             return $this->redirect($this->generateUrl('task_homepage'));
         }
         
@@ -53,6 +57,9 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($task);
             $em->flush();
+            $event = new TaskEvent($task); 
+            $dispatcher = $this->get('event_dispatcher'); 
+            $dispatcher->dispatch('task.edit', $event);
             return $this->redirect($this->generateUrl('task_homepage'));
         }
         
@@ -72,6 +79,9 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $em->remove($task);
         $em->flush();
+        $event = new TaskEvent($task); 
+        $dispatcher = $this->get('event_dispatcher'); 
+        $dispatcher->dispatch('task.delete', $event);
         return $this->redirect($this->generateUrl('task_homepage'));
     }
 }

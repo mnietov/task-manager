@@ -10,3 +10,11 @@ services:
     my_tasks.last_tasks:
         class: My\TaskBundle\Model\LastTasks
         arguments: ["@doctrine.orm.entity_manager"]
+        
+    my_tasks.tasks_listener:
+        class: My\TaskBundle\Event\TasksListener
+        arguments: ["@monolog.logger"]
+        tags:
+            - {name: kernel.event_listener, event: task.create, method: onTaskCreate}
+            - {name: kernel.event_listener, event: task.edit, method: onTaskEdit}
+            - {name: kernel.event_listener, event: task.delete, method: onTaskDelete}
