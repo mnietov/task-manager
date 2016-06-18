@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet"
+          href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+</head>
+<body>
+    
+    <button type="button" class="btn btn-primary" onclick="location.href = '{{ url('register') }}'" style="right: 20px; top: 20px; position: absolute;">
+        Register
+    </button>
+
+    <div class="container">
+        <h2>Login</h2>
+        <form class="form-horizontal" action="{{ path('login') }}" method="post">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="username">Username:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="username" name="_username" placeholder="Enter username">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="password">Password:</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" name="_password" placeholder="Enter password">
+                </div>
+            </div>
+            {#
+              If you want to control the URL the user
+              is redirected to on success (more details below)
+              <input type="hidden" name="_target_path" value="/account" />
+          #}
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+            
+    {% if error %}
+        <div class="alert alert-danger" style="width: 80%;margin: 0 auto;margin-top: 20px;">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+
+</body>
+</html>

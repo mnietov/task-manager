@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h2>User Manager</h2>   
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.roles[0]}}</td>
+                        <td>
+                            {% if user.roles[0] != "" %}
+                            <button type="button" class="btn btn-default btn-sm" onclick="location.href = '{{ url('invalidate_user', {id: user.id}) }}'">
+                                <span class="glyphicon glyphicon-ok"></span> 
+                            </button>
+                            {% else %}  
+                            <button type="button" class="btn btn-default btn-sm" onclick="location.href = '{{ url('validate_user', {id: user.id}) }}'">
+                                <span class="glyphicon glyphicon-remove"></span> 
+                            </button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+            
+    <button type="button" class="btn btn-primary btn-sm" onclick="location.href = '{{ url('task_homepage') }}'" style="margin-left: 150px;">
+        Return
+    </button>        
+
+{% endblock %}

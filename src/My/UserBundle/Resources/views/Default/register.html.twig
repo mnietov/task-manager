@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h2>Register</h2>   
+        
+        {{form_start(form)}}
+        {{form_errors(form)}}
+        {{form_row(form.email, { 'attr': {'class': 'form-control'} })}} <br/>
+        {{form_row(form.username, { 'attr': {'class': 'form-control'} })}} <br/>
+        {{form_row(form.password, { 'attr': {'class': 'form-control'} })}} <br/>
+        {{form_row(form.register, { 'attr': {'class': 'btn btn-primary'} })}}
+        {{form_end(form)}}
+        
+    </div>
+    
+    <br/>
+    <footer>
+        <div class="container">
+            Contacto: {{ contact_email }}
+        </div>
+    </footer>
+
+{% endblock %}

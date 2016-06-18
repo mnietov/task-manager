@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use My\TaskBundle\Entity\Task;
 use My\TaskBundle\Form\Type\TaskType;
 use My\TaskBundle\Event\TaskEvent;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -14,8 +16,13 @@ class DefaultController extends Controller
     {
         $repository = $this->getDoctrine()->getRepository('TaskBundle:Task');
         $tasks = $repository->findAll();
+                        
+        $admin = false;
+        if ($this->getUser()->getRoles() === "ROLE_ADMIN"){
+            $admin = true;
+        }
         
-        return $this->render('TaskBundle:Default:index.html.twig', array('tasks' => $tasks, 'lasttasks' => $this->getLastTasks()));
+        return $this->render('TaskBundle:Default:index.html.twig', array('tasks' => $tasks, 'lasttasks' => $this->getLastTasks(), 'admin' => $admin));
     } 
     
     private function getLastTasks(){
@@ -83,5 +90,13 @@ class DefaultController extends Controller
         $dispatcher = $this->get('event_dispatcher'); 
         $dispatcher->dispatch('task.delete', $event);
         return $this->redirect($this->generateUrl('task_homepage'));
+    }
+    
+    /**
+     * @Route("/admin")
+     */
+    public function adminAction()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
     }
 }

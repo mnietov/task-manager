@@ -13,3 +13,32 @@ edit_task:
 delete_task:
     path:     /delete-task/{id}
     defaults: { _controller: TaskBundle:Default:delete }
+   
+admin:
+    resource: "@TaskBundle/Controller/DefaultController.php"
+    type:     annotation
+    
+login:
+    resource: "@TaskBundle/Controller/SecurityController.php"
+    type:     annotation
+    
+logout:
+    path: /logout
+
+register:
+    path:     /register
+    defaults: { _controller: MyUserBundle:Default:register}
+    
+manage_users:
+    path:     /manage-users
+    defaults: { _controller: MyUserBundle:Default:manage}
+
+invalidate_user:
+    path:     /invalidate-user/{id}
+    defaults: { _controller: MyUserBundle:Default:invalidate}
+
+validate_user:
+    path:     /validate-user/{id}
+    defaults: { _controller: MyUserBundle:Default:validate}
+
+    
