@@ -3,28 +3,28 @@
 {% block body %}
     
     <button type="button" class="btn btn-primary" onclick="location.href = '{{ url('logout') }}'" style="right: 20px; top: 20px; position: absolute;">
-        Logout
+        {% trans %}Logout{% endtrans %}
     </button>
         
     {% if admin %}
         <button type="button" class="btn btn-primary" onclick="location.href = '{{ url('manage_users') }}'" style="right: 125px; top: 20px; position: absolute;">
-            Manage Users
+            {% trans %}Manage Users{% endtrans %}
         </button> 
     {% endif %}
 
     <div class="container">
-        <h2>Task Manager</h2>   
+        <h2>{% trans %}Task Manager{% endtrans %}</h2>   
         <form action="{{ url('create_task') }}" method="POST">
-            <input type="submit" class="btn btn-primary" value="Add Task">
+            <input type="submit" class="btn btn-primary" value="{% trans %}Add Task{% endtrans %}">
         </form>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Created At</th>
-                    <th>Actions</th>
+                    <th>{% trans %}Name{% endtrans %}</th>
+                    <th>{% trans %}Description{% endtrans %}</th>
+                    <th>{% trans %}Created At{% endtrans %}</th>
+                    <th>{% trans %}Actions{% endtrans %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +47,7 @@
             </tbody>
         </table>
             
-        <h2>Last 3 Tasks Added</h2>  
+        <h2>{% trans %}Last 3 Tasks Added{% endtrans %}</h2>  
             <ol>
             {% for task in lasttasks %}
                 <li>{{task.name}}</li>
@@ -58,7 +58,7 @@
     <br/>
     <footer>
         <div class="container">
-            Contacto: {{ contact_email }}
+            {% trans %}Contact{% endtrans %}: {{ contact_email }}
         </div>
     </footer>
 

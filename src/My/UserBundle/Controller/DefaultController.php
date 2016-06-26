@@ -11,7 +11,7 @@ use My\UserBundle\Form\Type\UserType;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/{_locale}/", name="task_homepage")
      */
     public function indexAction()
     {
@@ -55,6 +55,9 @@ class DefaultController extends Controller
         );
     }
     
+    /**
+     * @Route("/{_locale}/", name="manage_users")
+     */
     public function manageAction(){
         $repository = $this->getDoctrine()->getRepository('MyUserBundle:User');
         $users = $repository->findAll();

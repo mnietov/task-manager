@@ -1,17 +1,17 @@
 task_homepage:
-    path:     /
+    path:     /{_locale}/
     defaults: { _controller: TaskBundle:Default:index }
     
 create_task:
-    path:     /create-task
+    path:     /{_locale}/create-task
     defaults: { _controller: TaskBundle:Default:create }
     
 edit_task:
-    path:     /edit-task/{id}
+    path:     /{_locale}/edit-task/{id}
     defaults: { _controller: TaskBundle:Default:edit }
     
 delete_task:
-    path:     /delete-task/{id}
+    path:     /{_locale}/delete-task/{id}
     defaults: { _controller: TaskBundle:Default:delete }
    
 admin:
@@ -26,19 +26,19 @@ logout:
     path: /logout
 
 register:
-    path:     /register
+    path:     /{_locale}/register
     defaults: { _controller: MyUserBundle:Default:register}
     
 manage_users:
-    path:     /manage-users
+    path:     /{_locale}/manage-users
     defaults: { _controller: MyUserBundle:Default:manage}
 
 invalidate_user:
-    path:     /invalidate-user/{id}
+    path:     /{_locale}/invalidate-user/{id}
     defaults: { _controller: MyUserBundle:Default:invalidate}
 
 validate_user:
-    path:     /validate-user/{id}
+    path:     /{_locale}/validate-user/{id}
     defaults: { _controller: MyUserBundle:Default:validate}
 
     

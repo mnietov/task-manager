@@ -11,22 +11,22 @@
 <body>
     
     <button type="button" class="btn btn-primary" onclick="location.href = '{{ url('register') }}'" style="right: 20px; top: 20px; position: absolute;">
-        Register
+        {% trans %}Register{% endtrans %}
     </button>
 
     <div class="container">
-        <h2>Login</h2>
+        <h2>{% trans %}Login{% endtrans %}</h2>
         <form class="form-horizontal" action="{{ path('login') }}" method="post">
             <div class="form-group">
-                <label class="control-label col-sm-2" for="username">Username:</label>
+                <label class="control-label col-sm-2" for="username">{% trans %}Username{% endtrans %}:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="username" name="_username" placeholder="Enter username">
+                    <input type="text" class="form-control" id="username" name="_username" placeholder="{% trans %}Enter username{% endtrans %}">
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="password">Password:</label>
+                <label class="control-label col-sm-2" for="password">{% trans %}Password{% endtrans %}:</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" name="_password" placeholder="Enter password">
+                    <input type="password" class="form-control" id="password" name="_password" placeholder="{% trans %}Enter password{% endtrans %}">
                 </div>
             </div>
             {#
@@ -36,7 +36,7 @@
           #}
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">{% trans %}Login{% endtrans %}</button>
                 </div>
             </div>
         </form>

@@ -12,13 +12,31 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+    /**
+     * @Route("/{_locale}/", name="task_homepage")
+     */
     public function indexAction()
     {
         $repository = $this->getDoctrine()->getRepository('TaskBundle:Task');
         $tasks = $repository->findAll();
                         
         $admin = false;
-        if ($this->getUser()->getRoles() === "ROLE_ADMIN"){
+        if ($this->getUser() === null) {
+            $authenticationUtils = $this->get('security.authentication_utils');
+
+            // get the login error if there is one
+            $error = $authenticationUtils->getLastAuthenticationError();
+            // last username entered by the user
+            $lastUsername = $authenticationUtils->getLastUsername();
+            return $this->render(
+                            'TaskBundle:Security:login.html.twig', array(
+                            // last username entered by the user
+                            'last_username' => $lastUsername,
+                            'error' => $error,
+                                )
+            );
+        }
+        if ($this->getUser()->getRoles()[0] === "ROLE_ADMIN"){
             $admin = true;
         }
         
@@ -29,6 +47,9 @@ class DefaultController extends Controller
         return $this->get('my_tasks.last_tasks')->getLastTasks();
     }
     
+    /**
+     * @Route("/{_locale}/", name="create-task")
+     */
     public function createAction(Request $request){
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
@@ -53,6 +74,9 @@ class DefaultController extends Controller
         );
     }
     
+    /**
+     * @Route("/{_locale}/", name="edit-task")
+     */
     public function editAction($id, Request $request){
         $repository = $this->getDoctrine()->getRepository('TaskBundle:Task');
         $task = $repository->find($id);
